@@ -6,7 +6,7 @@ from src.app import create_app, db
 
 # env_name = os.getenv('FLASK_ENV' or 'default') 
 
-app = create_app(os.getenv('FLASK_CONFIG') or 'default')
+app = create_app(os.getenv('FLASK_CONFIG') or 'application')
 
 migrate = Migrate(app=app, db=db)
 
