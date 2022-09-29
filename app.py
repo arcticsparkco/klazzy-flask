@@ -6,7 +6,7 @@ from src.app import create_app
 
 # load_dotenv(find_dotenv())
 
-env_name = os.getenv('FLASK_ENV')
+env_name = os.getenv('FLASK_ENV') or 'default'
 # print("env_name" + env_name)
 
 app = create_app(env_name)
