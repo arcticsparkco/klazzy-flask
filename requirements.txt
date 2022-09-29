@@ -18,4 +18,4 @@ Flask-JWT-Extended==3.13.0
 PyJWT==1.6.4
 PyMySQL
 Flask-Script
-Flask-Migrate
+Flask-Migrate==2.6.0
