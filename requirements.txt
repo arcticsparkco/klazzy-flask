@@ -17,5 +17,5 @@ flask-bcrypt
 Flask-JWT-Extended==3.13.0
 PyJWT==1.6.4
 PyMySQL
-flask_script
-flask_migrate
+Flask-Script
+Flask-Migrate
