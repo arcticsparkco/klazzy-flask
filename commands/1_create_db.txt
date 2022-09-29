@@ -1,0 +1,10 @@
+(env) $ python
+
+from main import db
+db.create_all()
+exit()
+
+
+# if error - ModuleNotFoundError: No module named 'pymysql'
+# if db doesnt work, try this:
+pip3 install PyMySQL

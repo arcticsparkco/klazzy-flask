@@ -1,0 +1,5 @@
+python manage.py - commands:
+
+  584  python manage.py db init
+  585  python manage.py db migrate
+  592  python manage.py db upgrade
