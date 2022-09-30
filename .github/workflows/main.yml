@@ -16,9 +16,9 @@ jobs:
       run: zip -r deploy.zip . -x '*.git*'
 
     - name: test secrets vars
-      run: echo "The GitHub Action Secret will be masked: " 
-           echo ${{ secrets.SECRET_TOKEN }}
-
+      run: 
+        echo "The GitHub Action Secret will be masked: " 
+        echo ${{ secrets.SECRET_TOKEN }}
 
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v20
