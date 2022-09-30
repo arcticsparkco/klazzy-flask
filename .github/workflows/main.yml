@@ -18,7 +18,7 @@ jobs:
     - name: test secrets vars
       run: 
         echo 'The GitHub Action Secret will be masked'
-        echo ${{ secrets.SECRET_TOKEN }}
+        echo ${{ secrets.AWS_ACCESS_KEY_ID }}
 
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v20
