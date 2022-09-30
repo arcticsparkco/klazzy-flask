@@ -3,6 +3,8 @@
 from flask import Flask
 from flask_cors import CORS, cross_origin
 
+import os
+
 from .config import app_config
 from .models import db
 from .models import bcrypt
