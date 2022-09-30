@@ -18,13 +18,13 @@ jobs:
     - name: test secrets vars
       run: 
         echo 'The GitHub Action Secret will be masked'
-        echo ${{ secrets.AWS_ACCESS_KEY_ID }}
+        echo ${{ secrets }}
 
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v20
       with:
-        aws_access_key: ${{ AWS_ACCESS_KEY_ID }}
-        aws_secret_key: ${{ AWS_SECRET_ACCESS_KEY }}
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: klazzy-flask
         environment_name: klazzy-flask-dev
         version_label: 12345
