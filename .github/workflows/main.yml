@@ -17,7 +17,7 @@ jobs:
 
     - name: test secrets vars
       run: 
-        echo "The GitHub Action Secret will be masked: " 
+        echo 'The GitHub Action Secret will be masked'
         echo ${{ secrets.SECRET_TOKEN }}
 
     - name: Deploy to EB
