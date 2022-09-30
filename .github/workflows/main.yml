@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: klazzy-flask-deploy-env  # THIS WAS MISSING
+    environment: klazzy-flask-deployment-dev  # THIS WAS MISSING
 
     steps:
 
