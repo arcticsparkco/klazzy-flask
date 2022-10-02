@@ -9,3 +9,7 @@ bcrypt = Bcrypt()
 
 from .BlogpostModel import BlogpostModel, BlogpostSchema
 from .UserModel import UserModel, UserSchema
+from .DealModel import DealSchema, DealModel
+from .EventModel import EventSchema, EventModel
+from .TagModel import TagSchema, TagModel
+from .CategoryModel import CategorySchema, CategoryModel

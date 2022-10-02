@@ -3,6 +3,7 @@ from marshmallow import fields, Schema
 import datetime
 from . import db, bcrypt
 from .BlogpostModel import BlogpostSchema
+from .DealModel import DealSchema
 
 class UserModel(db.Model):
   """
@@ -19,6 +20,7 @@ class UserModel(db.Model):
   created_at = db.Column(db.DateTime)
   modified_at = db.Column(db.DateTime)
   blogposts = db.relationship('BlogpostModel', backref='users', lazy=True)
+  deals = db.relationship("DealModel", backref="deal_owner", lazy=True)
 
   # class constructor
   def __init__(self, data):
@@ -72,8 +74,10 @@ class UserSchema(Schema):
   id = fields.Int(dump_only=True)
   name = fields.Str(required=True)
   email = fields.Email(required=True)
-  password = fields.Str(required=True, load_only=True)
+  # password = fields.Str(required=True, load_only=True)
   created_at = fields.DateTime(dump_only=True)
   modified_at = fields.DateTime(dump_only=True)
   blogposts = fields.Nested(BlogpostSchema, many=True)
+  deals = fields.Nested(DealSchema, many=True)
+
 

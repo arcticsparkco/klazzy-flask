@@ -15,7 +15,8 @@ from .views.BlogpostView import blogpost_api as blogpost_blueprint
 from .views.EventView import event_api as event_blueprint
 from .views.DealView import deal_api as deal_blueprint
 from .views.PlaceView import place_api as place_blueprint
-
+from .views.TagView import tag_api as tag_blueprint
+from .views.CategoryView import category_api as category_blueprint
 
 def create_app(env_name):
   """
@@ -39,6 +40,8 @@ def create_app(env_name):
   app.register_blueprint(event_blueprint, url_prefix='/api/v1/events')
   app.register_blueprint(deal_blueprint, url_prefix='/api/v1/deals')
   app.register_blueprint(place_blueprint, url_prefix='/api/v1/places')
+  app.register_blueprint(tag_blueprint, url_prefix='/api/v1/tags')
+  app.register_blueprint(category_blueprint, url_prefix='/api/v1/categories')
 
   @app.route('/', methods=['GET'])
   @cross_origin()

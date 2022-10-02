@@ -31,13 +31,13 @@ def create():
   return custom_response({'jwt_token': token}, 201)
 
 @user_api.route('/', methods=['GET'])
-@Auth.auth_required
+# @Auth.auth_required
 def get_all():
   """
   Get all users
   """
   users = UserModel.get_all_users()
-  ser_users = user_schema.dump(users, many=True).data
+  ser_users = user_schema.dump(users, many=True)
   return custom_response(ser_users, 200)
 
 @user_api.route('/<int:user_id>', methods=['GET'])

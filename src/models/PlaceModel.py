@@ -14,6 +14,7 @@ class PlaceModel(db.Model):
   name = db.Column(db.String(128), nullable=False)
   description = db.Column(db.Text, nullable=False)
   address = db.Column(db.Text, nullable=False)
+  phone = db.Column(db.Integer, nullable=False)
   owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   created_at = db.Column(db.DateTime)
   modified_at = db.Column(db.DateTime)
@@ -23,6 +24,7 @@ class PlaceModel(db.Model):
     self.description = data.get('description')
     self.owner_id = data.get('owner_id')
     self.address = data.get('address')
+    self.phone = data.get('phone')
     self.created_at = datetime.datetime.utcnow()
     self.modified_at = datetime.datetime.utcnow()
 
@@ -59,6 +61,7 @@ class PlaceSchema(Schema):
   name = fields.Str(required=True)
   description = fields.Str(required=True)
   address = fields.Str(required=False)
+  phone = fields.Int(required=False)
   owner_id = fields.Int(required=False)
   created_at = fields.DateTime(dump_only=True)
   modified_at = fields.DateTime(dump_only=True)
