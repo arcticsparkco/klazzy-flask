@@ -20,7 +20,7 @@ class UserModel(db.Model):
   created_at = db.Column(db.DateTime)
   modified_at = db.Column(db.DateTime)
   blogposts = db.relationship('BlogpostModel', backref='users', lazy=True)
-  deals = db.relationship("DealModel", backref="deal_owner", lazy=True)
+  deals = db.relationship("DealModel", backref="deal_creator", lazy=True)
 
   # class constructor
   def __init__(self, data):
