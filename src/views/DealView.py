@@ -6,7 +6,6 @@ from ..models.DealModel import DealModel, DealSchema
 deal_api = Blueprint('deal_api', __name__)
 deal_schema = DealSchema()
 
-
 @deal_api.route('/', methods=['POST'])
 @Auth.auth_required
 def create():
@@ -32,12 +31,24 @@ def get_all():
   data = deal_schema.dump(deals, many=True)
   return custom_response(data, 200)
 
-@deal_api.route('/<int:deal_id>', methods=['GET'])
+@deal_api.route('/id/<int:deal_id>', methods=['GET'])
 def get_one(deal_id):
   """
   Get A Deal
   """
   deal = DealModel.get_one_deal(deal_id)
+  if not deal:
+    return custom_response({'error': 'deal not found'}, 404)
+  data = deal_schema.dump(deal)
+  return custom_response(data, 200)
+
+
+@deal_api.route('/slug/<string:slug>', methods=['GET'])
+def get_one_by_slug(slug):
+  """
+  Get A Deal
+  """
+  deal = DealModel.get_one_deal_by_slug(slug)
   if not deal:
     return custom_response({'error': 'deal not found'}, 404)
   data = deal_schema.dump(deal)

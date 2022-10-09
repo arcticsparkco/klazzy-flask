@@ -1,11 +1,14 @@
 # src/models/DealModel.py
 from . import db
 import datetime
+
 from marshmallow import fields, Schema
+
+from slugify import slugify
+
 from .CategoryModel import CategorySchema
 from .TagModel import TagSchema, TagModel
 from .CategoryModel import CategorySchema, CategoryModel
-
 
 deal_tag = db.Table('deal_tag',
                     db.Column('deal_id', db.Integer, db.ForeignKey('deals.id')),
@@ -27,6 +30,7 @@ class DealModel(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(128), nullable=False)
+  slug = db.Column(db.String(128), nullable=False, unique=True)
   description = db.Column(db.Text, nullable=False)
   url = db.Column(db.Text, nullable=False)
   img = db.Column(db.Text, nullable=False)
@@ -43,6 +47,7 @@ class DealModel(db.Model):
     self.owner_id = data.get('owner_id')
     self.url = data.get('url')
     self.img = data.get('img')
+    self.slug = slugify(self.name)
     self.valid_until = datetime.datetime.utcnow()
     self.created_at = datetime.datetime.utcnow()
     self.modified_at = datetime.datetime.utcnow()
@@ -69,6 +74,11 @@ class DealModel(db.Model):
   def get_one_deal(id):
     return DealModel.query.get(id)
 
+  @staticmethod
+  def get_one_deal_by_slug(slug):
+    # print("in get_one_deal_by_slug slug= " + slug)
+    return DealModel.query.filter(DealModel.slug==slug).one_or_none()
+
   def __repr__(self):
     return '<id {}>'.format(self.id)
 
@@ -78,6 +88,7 @@ class DealSchema(Schema):
   """
   id = fields.Int(dump_only=True)
   name = fields.Str(required=True)
+  slug = fields.Str(required=True)
   description = fields.Str(required=True)
   # owner_id = fields.Int(required=False)
   url = fields.Str(required=False)
